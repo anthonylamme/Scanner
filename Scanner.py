@@ -8,7 +8,8 @@ values={'username':'user',
 
 webAddress='http://gmail.com' #website
 
-filepathway='/home/pi/Scanner/Data/
+filepathway='/home/pi/SlackData/Data/'
+BaudRate=115200
 
 driver=webdrivr.Firefox() #browser
 driver.implicitly_wait(10) #wait for browser to open
@@ -36,7 +37,7 @@ while True:
     text_box=driver.find_element_by_css_selector('#input')
     text_box.send_keys(barcode)
     driver.find_element_by_css_selector('#submit').click()
-    
+    print 'Writing to File'
     if checkDate != outputDate:
         filename=filename2
         outputDate=checkDate
