@@ -11,7 +11,7 @@ webAddress='http://gmail.com' #website
 filepathway='/home/pi/SlackData/Data/'
 BaudRate=115200
 
-driver=webdriver.Firefox() #browser
+driver=webdriver.Chromium() #browser
 driver.implicitly_wait(10) #wait for browser to open
 driver.get(webAddress) #go to website
 print driver.content
