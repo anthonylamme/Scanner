@@ -14,7 +14,6 @@ BaudRate=115200
 driver=webdriver.Firefox() #browser
 driver.implicitly_wait(10) #wait for browser to open
 driver.get(webAddress) #go to website
-print driver.content
 
 req=requests.post(webAddress,data=values) #log in
 print r.content
