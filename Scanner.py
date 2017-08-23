@@ -1,22 +1,22 @@
 import requests
 import time as t
-
+from os import path
 from selenium import webdriver #acceses website
 
 values={'username':'user', 
         'password':'pass'}#username and password for site
-
-webAddress='http://gmail.com' #website
+print 'address'
+webAddress='http://admin.erincondren.com/' #website
 
 filepathway='/home/pi/SlackData/Data/'
 BaudRate=115200
-
+print 'driver'
 driver=webdriver.Firefox() #browser
-driver.implicitly_wait(10) #wait for browser to open
+print 'website'
 driver.get(webAddress) #go to website
-
+print 'request'
 req=requests.post(webAddress,data=values) #log in
-print r.content
+print req.content
 
 ## logged into site now
 
@@ -26,12 +26,12 @@ outputDate2='%d/%d/%d'%(date[1],date[2],(date[0]%100))
 filename='%s.csv'%outputDate
 
 while True:
+    barcode=raw_input('code?')
     date=t.localtime(t.time())
     checkDate='%d_%d_%d'%(date[1],date[2],(date[0]%100))
     checkDate2='%d/%d/%d'%(date[1],date[2],(date[0]%100))
-    clock='%H:%M:%S'%(date[3],date[4],date[5])
+    clock='%d:%d:%d'%(date[3],date[4],date[5])
     filename2='%s.csv'%checkDate
-    barcode=raw_input('code?')
     print barcode
     text_box=driver.find_element_by_css_selector('#input')
     text_box.send_keys(barcode)
