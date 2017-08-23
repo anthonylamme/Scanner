@@ -1,41 +1,51 @@
-import requests
+import mechanize
 import time as t
 from os import path
-from selenium import webdriver #acceses website
 
-values={'username':'alamme', 
-        'password':'1234'}#username and password for site
-print 'address'
-webAddress='http://admin.erincondren.com/' #website
+webaddress='http://admin.erincondren.com' #site
+BarcodeAddress='http://admin.erincondren.com/admin/userprofile'#barcode site
+username='alamme'#username
+passcode='1234'#password
+formLog='loginForm' #Login Form Name
+#formBar='print_label_form' #Barcode Form Name
+formBar='userForm'
 
+BaudRate=115200 #baudRate of scanner
 filepathway='/home/pi/SlackData/Data/'
-BaudRate=115200
-print 'driver'
-driver=webdriver.Firefox() #browser
-print 'website'
-driver.get(webAddress) #go to website
-print 'request'
-req=requests.post(webAddress,data=values) #log in
-print req.content
 
-## logged into site now
+agent=mechanize.Browser()#Browser
+agent.set_handle_robots(False)#ignore Bot Rules
+agent.addheaders=[('User-agent','Firefox')] #method of browsing
+agent.open(webaddress) #go to address
+#Logging in
+agent.select_form(name=formLog) 
+agent['username']=username
+agent['password']=passcode
 
+result=agent.submit()
+#go to website
+agent.open(BarcodeAddress)
+agent.select_form(name=formBar)
+
+#retrieve time
 date=t.localtime(t.time())
 outputDate='%d_%d_%d'%(date[1],date[2],(date[0]%100))
 outputDate2='%d/%d/%d'%(date[1],date[2],(date[0]%100))
 filename='%s.csv'%outputDate
 
 while True:
-    barcode=raw_input('code?')
+    barcode=raw_input('code?') #Pi gets Barcode
+    agent.select_form(name=formBar)
+    #agent['barcode']=barcode
+    agent['middle_name']=barcode
+    result=agent.submit()
+    
     date=t.localtime(t.time())
     checkDate='%d_%d_%d'%(date[1],date[2],(date[0]%100))
     checkDate2='%d/%d/%d'%(date[1],date[2],(date[0]%100))
     clock='%d:%d:%d'%(date[3],date[4],date[5])
     filename2='%s.csv'%checkDate
-    print barcode
-    text_box=driver.find_element_by_css_selector('#input')
-    text_box.send_keys(barcode)
-    driver.find_element_by_css_selector('#submit').click()
+    
     print 'Writing to File'
     if checkDate != outputDate:
         filename=filename2
@@ -51,4 +61,3 @@ while True:
         f = open(filepathway+filename, 'a') 
         f.write("%s,%s,%s,\n" % (outputDate2,clock,barcode))
         f.close()
-    
