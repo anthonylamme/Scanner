@@ -3,8 +3,8 @@ import time as t
 from os import path
 from selenium import webdriver #acceses website
 
-values={'username':'user', 
-        'password':'pass'}#username and password for site
+values={'username':'alamme', 
+        'password':'1234'}#username and password for site
 print 'address'
 webAddress='http://admin.erincondren.com/' #website
 
