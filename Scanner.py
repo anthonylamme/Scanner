@@ -13,19 +13,19 @@ formBar='barcode_update_form'
 BaudRate=115200 #baudRate of scanner
 filepathway='/home/pi/SlackData/Data/'
 
-agent=mechanize.Browser()#Browser
-agent.set_handle_robots(False)#ignore Bot Rules
-agent.addheaders=[('User-agent','Firefox')] #method of browsing
-agent.open(webaddress) #go to address
+#agent=mechanize.Browser()#Browser
+#agent.set_handle_robots(False)#ignore Bot Rules
+#agent.addheaders=[('User-agent','Firefox')] #method of browsing
+#agent.open(webaddress) #go to address
 #Logging in
-agent.select_form(name=formLog) 
-agent['username']=username
-agent['password']=passcode
+#agent.select_form(name=formLog) 
+#agent['username']=username
+#agent['password']=passcode
 
-result=agent.submit()
+#result=agent.submit()
 #go to website
-agent.open(BarcodeAddress)
-agent.select_form(name=formBar)
+#agent.open(BarcodeAddress)
+#agent.select_form(name=formBar)
 
 #retrieve time
 date=t.localtime(t.time())
@@ -34,6 +34,19 @@ outputDate2='%d/%d/%d'%(date[1],date[2],(date[0]%100))
 filename='%s.csv'%outputDate
 
 while True:
+    agent=mechanize.Browser()#Browser
+    agent.set_handle_robots(False)#ignore Bot Rules
+    agent.addheaders=[('User-agent','Firefox')] #method of browsing
+    agent.open(webaddress) #go to address
+    #Logging in
+    agent.select_form(name=formLog) 
+    agent['username']=username
+    agent['password']=passcode
+    result=agent.submit()
+    #go to website
+    agent.open(BarcodeAddress)
+    agent.select_form(name=formBar)
+    
     barcode=raw_input('code?') #Pi gets Barcode
     agent.select_form(name=formBar)
     #agent['barcode']=barcode
