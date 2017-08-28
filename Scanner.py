@@ -3,12 +3,12 @@ import time as t
 from os import path
 
 webaddress='http://admin.erincondren.com' #site
-BarcodeAddress='http://admin.erincondren.com/admin/userprofile'#barcode site
+BarcodeAddress='http://admin.erincondren.com/admin/order_status/barcode_status_update/10000317'#barcode site
 username='alamme'#username
 passcode='1234'#password
 formLog='loginForm' #Login Form Name
 #formBar='print_label_form' #Barcode Form Name
-formBar='userForm'
+formBar='barcode_update_form'
 
 BaudRate=115200 #baudRate of scanner
 filepathway='/home/pi/SlackData/Data/'
@@ -37,7 +37,7 @@ while True:
     barcode=raw_input('code?') #Pi gets Barcode
     agent.select_form(name=formBar)
     #agent['barcode']=barcode
-    agent['middle_name']=barcode
+    agent['barcode']=barcode
     result=agent.submit()
     
     date=t.localtime(t.time())
