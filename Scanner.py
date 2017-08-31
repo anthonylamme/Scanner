@@ -4,14 +4,18 @@ from os import path
 
 webaddress='http://admin.erincondren.com' #site
 BarcodeAddress='http://admin.erincondren.com/admin/order_status/barcode_status_update/10000317'#barcode site
-username='alamme'#username
-passcode='1234'#password
+
+
 formLog='loginForm' #Login Form Name
 #formBar='print_label_form' #Barcode Form Name
 formBar='barcode_update_form'
-
 BaudRate=115200 #baudRate of scanner
 filepathway='/home/pi/SlackData/Data/'
+key_to_the_kingdom='Keys.txt'
+
+keyway=open(filepathway+key_to_the_kingdom,'r')
+username=keyway.readline().rstrip().strip(' ').strip()#username
+passcode=keyway.readline().rstrip().strip(' ').strip()#password
 
 #agent=mechanize.Browser()#Browser
 #agent.set_handle_robots(False)#ignore Bot Rules
