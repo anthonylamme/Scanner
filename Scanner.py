@@ -4,7 +4,8 @@ from os import path
 
 webaddress='http://admin.erincondren.com' #site
 BarcodeAddress='http://admin.erincondren.com/admin/order_status/barcode_status_update/10000317'#barcode site
-
+test='http://admin.erincondren.com/admin/userprofile'
+target='middle_name'
 
 formLog='loginForm' #Login Form Name
 #formBar='print_label_form' #Barcode Form Name
@@ -50,15 +51,17 @@ while True:
     agent['password']=passcode
     result=agent.submit()
     #go to website
-    agent.open(BarcodeAddress)
-    agent.select_form(name=formBar)
+    ##agent.open(BarcodeAddress)
+    ##agent.select_form(name=formBar)
+    agent.open(test)
+    agent.select_form(name=taget)
     
     barcode=raw_input('code?') #Pi gets Barcode
     agent.select_form(name=formBar)
-    #agent['barcode']=barcode
-    agent['barcode']=barcode
+    ##agent['barcode']=barcode
+    agent['middle_name']=barcode
     result=agent.submit()
-    
+    print result
     date=t.localtime(t.time())
     checkDate='%d_%d_%d'%(date[1],date[2],(date[0]%100))
     checkDate2='%d/%d/%d'%(date[1],date[2],(date[0]%100))
