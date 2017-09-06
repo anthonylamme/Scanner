@@ -5,7 +5,7 @@ from os import path
 webaddress='http://admin.erincondren.com' #site
 BarcodeAddress='http://admin.erincondren.com/admin/order_status/barcode_status_update/10000317'#barcode site
 test='http://admin.erincondren.com/admin/userprofile'
-target='middle_name'
+target='userForm'
 
 formLog='loginForm' #Login Form Name
 #formBar='print_label_form' #Barcode Form Name
