@@ -16,6 +16,8 @@ key_to_the_kingdom='Keys.txt'
 keyway=open(filepathway+key_to_the_kingdom,'r')
 username=keyway.readline().rstrip().strip(' ').strip()#username
 passcode=keyway.readline().rstrip().strip(' ').strip()#password
+print username
+print passcode
 
 #agent=mechanize.Browser()#Browser
 #agent.set_handle_robots(False)#ignore Bot Rules
