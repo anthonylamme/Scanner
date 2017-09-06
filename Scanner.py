@@ -57,7 +57,7 @@ while True:
     agent.select_form(name=target)
     
     barcode=raw_input('code?') #Pi gets Barcode
-    agent.select_form(name=formBar)
+    #agent.select_form(name=formBar)
     ##agent['barcode']=barcode
     agent['middle_name']=barcode
     result=agent.submit()
