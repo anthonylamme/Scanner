@@ -54,7 +54,7 @@ while True:
     ##agent.open(BarcodeAddress)
     ##agent.select_form(name=formBar)
     agent.open(test)
-    agent.select_form(name=taget)
+    agent.select_form(name=target)
     
     barcode=raw_input('code?') #Pi gets Barcode
     agent.select_form(name=formBar)
