@@ -56,7 +56,7 @@ while True:
     ####agent.open(test)
     ####agent.select_form(name=target)
     
-    barcode=raw_input('code?') #Pi gets Barcode
+    barcode=raw_input('') #Pi gets Barcode
     agent.select_form(name=formBar)
     agent['barcode']=barcode
     ####agent['middle_name']=barcode
@@ -68,7 +68,7 @@ while True:
     clock='%d:%d:%d'%(date[3],date[4],date[5])
     filename2='%s.csv'%checkDate
     
-    print 'Writing to File'
+    #print 'Writing to File'
     if checkDate != outputDate:
         filename=filename2
         outputDate=checkDate
