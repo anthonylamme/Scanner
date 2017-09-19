@@ -17,51 +17,39 @@ key_to_the_kingdom='Keys.txt'
 keyway=open(filepathway+key_to_the_kingdom,'r')
 username=keyway.readline().rstrip().strip(' ').strip()#username
 passcode=keyway.readline().rstrip().strip(' ').strip()#password
-##print username
-##print passcode
-
-#agent=mechanize.Browser()#Browser
-#agent.set_handle_robots(False)#ignore Bot Rules
-#agent.addheaders=[('User-agent','Firefox')] #method of browsing
-#agent.open(webaddress) #go to address
-#Logging in
-#agent.select_form(name=formLog) 
-#agent['username']=username
-#agent['password']=passcode
-
-#result=agent.submit()
-#go to website
-#agent.open(BarcodeAddress)
-#agent.select_form(name=formBar)
-
-#retrieve time
 date=t.localtime(t.time())
 outputDate='%d_%d_%d'%(date[1],date[2],(date[0]%100))
 outputDate2='%d/%d/%d'%(date[1],date[2],(date[0]%100))
 filename='%s.csv'%outputDate
-
 while True:
-    agent=mechanize.Browser()#Browser
-    agent.set_handle_robots(False)#ignore Bot Rules
-    agent.addheaders=[('User-agent','Firefox')] #method of browsing
-    agent.open(webaddress) #go to address
-    #Logging in
-    agent.select_form(name=formLog) 
-    agent['username']=username
-    agent['password']=passcode
-    result=agent.submit()
-    #go to website
-    agent.open(BarcodeAddress)
-    agent.select_form(name=formBar)
-    ####agent.open(test)
-    ####agent.select_form(name=target)
-    
-    barcode=raw_input('') #Pi gets Barcode
-    agent.select_form(name=formBar)
-    agent['barcode']=barcode
-    ####agent['middle_name']=barcode
-    result=agent.submit()
-    ##print result
+    try:
+        while True:
+            date=t.localtime(t.time())
+            print 'start %d:%d:%d'%(date[3],date[4],date[5])
+            agent=mechanize.Browser()#Browser
+            agent.set_handle_robots(False)#ignore Bot Rules
+            agent.addheaders=[('User-agent','Firefox')] #method of browsing
+            agent.open(webaddress) #go to address
+            agent.select_form(name=formLog) 
+            agent['username']='Lamone'
+            agent['password']='Password'
+            result=agent.submit()
+            date=t.localtime(t.time())
+            print 'website %d:%d:%d'%(date[3],date[4],date[5])
+            #go to website
+            agent.open(BarcodeAddress)
+            agent.select_form(name=formBar)
+            date=t.localtime(t.time())
+            print 'ready %d:%d:%d'%(date[3],date[4],date[5])
+            barcode=raw_input('') #Pi gets Barcode
+            agent.select_form(name=formBar)
+            agent['barcode']=barcode
+            result=agent.submit()
+            date=t.localtime(t.time())
+            print '%d:%d:%d'%(date[3],date[4],date[5])
+    except:
+        t.sleep(1)
+        continue
     '''
     date=t.localtime(t.time())
     checkDate='%d_%d_%d'%(date[1],date[2],(date[0]%100))
