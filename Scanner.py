@@ -31,8 +31,8 @@ while True:
             agent.addheaders=[('User-agent','Firefox')] #method of browsing
             agent.open(webaddress) #go to address
             agent.select_form(name=formLog) 
-            agent['username']='Lamone'
-            agent['password']='Password'
+            agent['username']=username
+            agent['password']=passcode
             result=agent.submit()
             date=t.localtime(t.time())
             print 'website %d:%d:%d'%(date[3],date[4],date[5])
