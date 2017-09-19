@@ -62,6 +62,7 @@ while True:
     ####agent['middle_name']=barcode
     result=agent.submit()
     ##print result
+    '''
     date=t.localtime(t.time())
     checkDate='%d_%d_%d'%(date[1],date[2],(date[0]%100))
     checkDate2='%d/%d/%d'%(date[1],date[2],(date[0]%100))
@@ -83,3 +84,4 @@ while True:
         f = open(filepathway+filename, 'a') 
         f.write("%s,%s,%s,\n" % (outputDate2,clock,barcode))
         f.close()
+'''
