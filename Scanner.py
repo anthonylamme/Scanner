@@ -1,6 +1,7 @@
 import mechanize
 import time as t
 from os import path
+import win32com.client
 
 webaddress='http://admin.erincondren.com' #site
 BarcodeAddress='http://admin.erincondren.com/admin/order_status/barcode_status_update/10000247'#barcode site
@@ -13,7 +14,8 @@ formBar='barcode_update_form'
 BaudRate=115200 #baudRate of scanner
 filepathway='/home/pi/SlackData/Data/'
 key_to_the_kingdom='Keys.txt'
-
+Susername='ecd'
+Spassword='admin2020'
 keyway=open(filepathway+key_to_the_kingdom,'r')
 username=keyway.readline().rstrip().strip(' ').strip()#username
 passcode=keyway.readline().rstrip().strip(' ').strip()#password
@@ -21,6 +23,7 @@ date=t.localtime(t.time())
 outputDate='%d_%d_%d'%(date[1],date[2],(date[0]%100))
 outputDate2='%d/%d/%d'%(date[1],date[2],(date[0]%100))
 filename='%s.csv'%outputDate
+shell = win32com.client.Dispatch("WScript.Shell")
 while True:
     try:
         while True:
@@ -30,6 +33,11 @@ while True:
             agent.set_handle_robots(False)#ignore Bot Rules
             agent.addheaders=[('User-agent','Firefox')] #method of browsing
             agent.open(webaddress) #go to address
+            shell.SendKeys(Susername)#username
+            shell.SendKeys('{TAB}')#Tab
+            shell.SendKeys(Spassword)#password
+            shell.SendKeys('{ENTER}')#Enter
+            
             agent.select_form(name=formLog) 
             agent['username']=username
             agent['password']=passcode
